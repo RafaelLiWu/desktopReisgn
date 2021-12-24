@@ -1,0 +1,17 @@
+{
+  "name": "deskg",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Rafael Li Wu",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^16.0.5"
+  },
+  "dependencies": {
+    "jquery": "^3.6.0"
+  }
+}

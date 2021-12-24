@@ -1,0 +1,270 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.body{
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+
+:root{
+	--font-family: sans-serif;
+	--title-height: 28px;
+	--andamento-height: 90px;
+	--opcoes-height: 60px;
+	--jogo-height: calc(100vh - var(--title-height));
+	--opcoes-items-top: calc(0px + var(--title-height));
+	--carta-radius: 18px;
+}
+
+/* Title Bar */
+/*==========================================================================================*/
+header {
+	width: 100%;
+	height: 28px;
+}
+
+.nav-opcoes{
+	width: 30px;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0 6px;
+	flex-direction: column;
+	cursor: pointer;
+}
+
+.nav-opcoes > div {
+	width: 100%;
+	background-color: white;
+	height: 2.7px;
+	margin: 1px 0;
+}
+
+.nav-opcoes-items{
+	position: absolute;
+	display: none;
+	width: 200px;
+	padding: 4px 0;
+	top: var(--opcoes-items-top);
+	left: 0;
+	background-color: rgb(35,32,36);
+}
+
+.nav-opcoes-items > div {
+	width: 100%;
+	height: 30px;
+	padding: 4.2px 18px;
+	cursor: pointer;
+}
+
+.nav-opcoes-items > div:hover{
+	background-color: rgb(55, 51, 58);
+}
+
+nav{
+	width: 100%;
+	height: 100%;
+	background-color: rgb(35,32,36);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	user-select: none;
+}
+
+.nav-group{	
+	right: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.nav-group > div{
+	width: 35px;
+	height: 28px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 16px;
+	cursor: pointer;
+	transition: all ease .4s;
+}
+
+.nav-group > div:hover{
+	background-color: turquoise;
+}
+
+.nav-nomeJogo{
+	flex: 1;
+	font-size: 16px;
+	font-family: var(--font-family);
+	height: 100%;
+	display: flex;
+	align-items: center;
+	padding: 4px 8px;
+	-webkit-app-region: drag;
+}
+
+
+
+
+
+/* Jogo */
+/*==========================================================================================*/
+.jogo{
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	width: 100%;
+	height: var(--jogo-height);
+}
+
+
+/* Parte do TOPO */
+/*==========================================================================================*/
+.andamento{
+	width: 100%;
+	height: var(--andamento-height);
+	background-color: #333;
+}
+
+
+
+
+
+
+
+
+/* Parte do MEIO */
+/*==========================================================================================*/
+.interface{
+	width: 100%;
+	background-color: transparent;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	background-color: rgb(226, 169, 131);;
+}
+
+.texto{
+	width: 100%;
+	height: 130px;
+	padding: 10px;
+	text-align: center;
+	overflow: auto;
+	font-size: 16.9px;
+	letter-spacing: 1.2px;
+}
+
+.texto::-webkit-scrollbar {
+	width: 6px;               
+}
+  
+.texto::-webkit-scrollbar-track {
+	background: transparent;        
+}
+
+.texto::-webkit-scrollbar-thumb {
+	background-color: rgb(86, 86, 88);
+	border-radius: 20px;       
+}
+
+
+
+/* =========================== */
+
+.personagem{
+	display: flex;
+	width: 100%;
+	flex: 1;
+	padding: 12px 30px;
+}
+
+
+.area-carta{
+	width: 100%;
+	height: 100%;
+	background-color: transparent;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	perspective: 500px;
+}
+
+.fundo-carta{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	border-radius: var(--carta-radius);
+	background-color: rgb(36, 36, 36);
+}
+
+.carta{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	border-radius: var(--carta-radius);
+	z-index: 99;
+	background-position:center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	display: flex;
+	justify-content: space-between;
+	padding: 10px;
+	color: white;
+	cursor: pointer;
+	transform: rotateY( 180deg );
+    backface-visibility: hidden;
+    transition: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.carta-direita{
+	width: 165px;
+	opacity: 0;
+	user-select: none;
+}
+
+.carta-esquerda{
+	width: 165px;
+	opacity: 0;
+	text-align: end;
+	user-select: none;
+}
+
+
+/* =========================== */
+
+
+
+.personagem-nome{
+	width: 100%;
+	height: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	letter-spacing: 1.4px;
+	font-weight: bolder;
+	font-size: 18px;
+}
+
+
+
+
+
+
+
+
+
+
+/* Parte de BAIXO */
+/*==========================================================================================*/
+.opcoes{
+	width: 100%;
+	height: var(--opcoes-height);
+	background-color: #333;
+}
