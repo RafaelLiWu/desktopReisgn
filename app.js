@@ -2,9 +2,11 @@ const {
 	app, 
 	BrowserWindow, 
 	Menu, 
-	ipcMain
+	ipcMain,
+	dialog
 } = require("electron")
 const path = require("path")
+const { title } = require("process")
 const publicPath = path.join(__dirname, "public")
 function createWindow() {
 	const win = new BrowserWindow({
@@ -38,6 +40,16 @@ function createWindow() {
 		win.minimize()
 	})
 
+	ipcMain.on("openInfo", (event, args) => {
+		dialog.showMessageBox(win, {
+			title: "Informações",
+			message: "Esse jogo está em fases de desenvolvimentos inciais, logo haverá atualizações..",
+			buttons: [
+				"Ok"
+			]
+		})
+	})
+
 }
 
 ipcMain.on("openPlat", (event, args) => {
@@ -47,7 +59,6 @@ ipcMain.on("openPlat", (event, args) => {
 		require('electron').shell.openExternal(`https://www.instagram.com/criffitaperuna/`)
 	else 
 		require('electron').shell.openExternal(`http://criff.000webhostapp.com/`)
-
 })
 
 app.whenReady().then(()=>{

@@ -1,3 +1,6 @@
-# Esse é um projeto de um jogo que está na fase inicial para feitos acadêmicos , é baseado em um jogo de smartphone, o Reisgn ou o Lapse, e está disponível no drive https://drive.google.com/drive/folders/19533wcmfkKaYA9bRSyf2_4lE7HHOcJAq?usp=sharing,
+# Projeto Acadêmico
 
-O Jogo é feito em Electron, e compilado utilizando o Electron-Packager
+esse é um projeto de jogo que está na sua fase inicial, é baseado em um jogo de smartphone, Reisgn e Lapse, e está disponível para testes em 
+https://drive.google.com/drive/folders/1-6I_bfBD7XBbUan1smCo_IG1_RImhQKE?usp=sharing
+
+Jogo feito em ElectronJS e compilado com Electron-Packager

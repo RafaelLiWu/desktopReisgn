@@ -26,6 +26,7 @@
 				<div class="nav-item" plat="criff">Nosso Site</div>
 				<div class="nav-item" plat="github">Github</div>
 				<div class="nav-item" plat="instagram">Instagram</div>
+				<div class="nav-item" info="true">Informações</div>
 			</div>
 			<div class="nav-opcoes">
 				<div></div>
@@ -45,6 +46,27 @@
 	</header>
 
 
+	<div class="inicio">
+		<div class="inicio-topo">
+			<div class="nome-jogo">A Libertação</div>
+			<div class="nome-pessoa">Carlos Daniel</div>
+			<div class="nome-pessoa">Carlos Sérgio</div>
+			<div class="nome-pessoa">Rafael Li Wu</div>
+			<div class="nome-pessoa">Rafael Soares</div>
+			<div class="nome-pessoa">Ronald de Oliveira</div>
+		</div>
+		<div class="inicio-baixo">
+			<button class="inicio-opcao" onclick="startGame()">Jogar</button>
+			<button class="inicio-opcao">Configurações</button>
+			<button class="inicio-opcao">Saiba Mais</button>
+		</div>
+	</div>
+
+
+
+
+
+
 
 
 	<!-- Área do jogo! -->
@@ -55,31 +77,31 @@
 
 		<section class="interface">
 			<div class="texto">
-				
+
 			</div>
 			<div class="personagem">
-				<div class="area-carta">
-					<div id="fundo-carta" class="fundo-carta"></div>
-					<div class="carta" id="carta">
-						<div class="carta-direita">
+				<div id="fundo-carta" class="fundo-carta">
+					<div class="carta" id="carta-0">
+						<div class="carta-esquerda">
 							Acho que irei com minha roupa normal, não é muito o que um escravo negro pode escolher!
 						</div>
-						<div class="carta-esquerda">
+						<div class="carta-direita">
 							Acho que irei com minha roupa normal, não é muito o que um escravo negro pode escolher!
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="personagem-nome">
-				
+
 			</div>
 		</section>
 		<section class="opcoes">
-			
+
 		</section>
 	</div>
 
 	<script src=".\dialogos.js"></script>
+	<script src=".\assets\js\inicio.js"></script>
 	<script src=".\mecanismo\mecanica.js"></script>
 </body>
 

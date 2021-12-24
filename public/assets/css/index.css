@@ -112,6 +112,83 @@ nav{
 
 
 
+/* Inicio/Introdução do Jogo */
+/*===========================================================================================*/
+.inicio{
+	width: 100%;
+	position: absolute;
+	height: var(--jogo-height);
+	background-color: #333;
+	display: flex;
+	flex-direction: column;
+	color: white;
+	z-index: 999;
+	transition: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.inicio-topo{
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.nome-jogo{
+	font-size: 50px;
+	font-weight: bold;
+}
+
+.nome-pessoa{
+	margin: 4px 0;
+}
+
+.inicio-baixo{
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.inicio-opcao{
+	width: 180px;
+	height: 50px;
+	margin: 5px 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 24px;
+	background-color: rgba(255,255,255,.4);
+	box-shadow: 0 0 .4rem rgba(211,211,211,.2);
+	cursor: pointer;
+	border: none;
+	text-decoration: none;
+	outline: none;
+	transition: all ease .4s;
+}
+
+.inicio-opcao:hover{
+	background-color: rgba(255,255,255,.9);
+	box-shadow: 0 0 .6em rgba(211,211,211,.92);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Jogo */
 /*==========================================================================================*/
@@ -158,7 +235,10 @@ nav{
 	overflow: auto;
 	font-size: 16.9px;
 	letter-spacing: 1.2px;
+	cursor: default;
+	user-select: none;
 }
+
 
 .texto::-webkit-scrollbar {
 	width: 6px;               
@@ -184,24 +264,13 @@ nav{
 	padding: 12px 30px;
 }
 
-
-.area-carta{
-	width: 100%;
-	height: 100%;
-	background-color: transparent;
-	position: relative;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	perspective: 500px;
-}
-
 .fundo-carta{
 	width: 100%;
 	height: 100%;
-	position: absolute;
+	position: relative;
 	border-radius: var(--carta-radius);
 	background-color: rgb(36, 36, 36);
+	perspective: 500px;
 }
 
 .carta{
@@ -217,22 +286,25 @@ nav{
 	justify-content: space-between;
 	padding: 10px;
 	color: white;
+	font-size: 20px;
 	cursor: pointer;
 	transform: rotateY( 180deg );
     backface-visibility: hidden;
-    transition: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);	
 }
 
 .carta-direita{
 	width: 165px;
 	opacity: 0;
+	text-align: end;
 	user-select: none;
+	
 }
 
 .carta-esquerda{
 	width: 165px;
 	opacity: 0;
-	text-align: end;
+	text-align: start;
 	user-select: none;
 }
 
@@ -250,6 +322,8 @@ nav{
 	letter-spacing: 1.4px;
 	font-weight: bolder;
 	font-size: 18px;
+	cursor: default;
+	user-select: none;
 }
 
 
@@ -268,3 +342,6 @@ nav{
 	height: var(--opcoes-height);
 	background-color: #333;
 }
+
+/* Fim do Jogo */
+/*===========================================================================================*/
