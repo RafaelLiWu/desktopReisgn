@@ -7,9 +7,14 @@ var carta,
     positionY_inicial,
     direction = "",
     fase = 0,
-    temporizador = []
+    temporizador = [],
+    ponteiro = 0
+
+const porcentagem = Math.round(100 / (Dialogos.length - 1))
 
 function nextFase(i) {
+    if (i != 0) s(".progress-bar").style.width = (porcentagem * i)+"%"
+    
     if (temporizador.length > 0) {
         for (let z = 0; z<temporizador.length; z++) 
             clearTimeout(temporizador[z])

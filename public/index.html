@@ -46,19 +46,21 @@
 	</header>
 
 
+
+
+    <!-- Introdução/Inicio -->
 	<div class="inicio">
-		<div class="inicio-topo">
-			<div class="nome-jogo">A Libertação</div>
-			<div class="nome-pessoa">Carlos Daniel</div>
-			<div class="nome-pessoa">Carlos Sérgio</div>
-			<div class="nome-pessoa">Rafael Li Wu</div>
-			<div class="nome-pessoa">Rafael Soares</div>
-			<div class="nome-pessoa">Ronald de Oliveira</div>
+		<div class="inicio-topo" onclick="startGame()">
+			<div class="nome-jogo">A<span>L</span><span class="minusculo">ibertação</span></div>
 		</div>
 		<div class="inicio-baixo">
-			<button class="inicio-opcao" onclick="startGame()">Jogar</button>
-			<button class="inicio-opcao">Configurações</button>
-			<button class="inicio-opcao">Saiba Mais</button>
+			<div class="lacuna-click" onclick="startGame()"></div>
+			<div class="inicio-baixo-group">
+				<div class="inicio-opcao config">Configurações</div>
+				<div class="lacuna"></div>
+				<div class="inicio-opcao saiba-mais">Saiba Mais</div>
+			</div>
+			<div class="inicio-opcao jogar" onclick="startGame()">Click para Jogar</div>
 		</div>
 	</div>
 
@@ -72,7 +74,12 @@
 	<!-- Área do jogo! -->
 	<div class="jogo">
 		<section class="andamento">
-
+				<div class="andamento-title">
+					Progresso
+				</div>
+				<div class="andamento-bar">
+					<div class="progress-bar"></div>
+				</div>
 		</section>
 
 		<section class="interface">

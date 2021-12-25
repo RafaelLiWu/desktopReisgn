@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,900&family=Montserrat:wght@700&family=Ubuntu:wght@700&display=swap');
 *{
 	margin: 0;
 	padding: 0;
@@ -17,6 +18,21 @@
 	--jogo-height: calc(100vh - var(--title-height));
 	--opcoes-items-top: calc(0px + var(--title-height));
 	--carta-radius: 18px;
+
+
+	--titlebar-fontfamily: "Ubuntu", sans-serif;
+	--titlebar-fontweight: "700";
+	--logo-fontfamily: "Lato";
+	--logo-fontweight: "100";
+	--logo-fontstyle: italic;
+	--button-fontfamily: "Montserrat";
+	--button-fontweight: "700";
+
+
+	--nav-opcoes-items-index: 9999;
+	--inicio-index: 999;
+	--carta-index: 99;
+	--inicio-baixo-group-index: 99;
 }
 
 /* Title Bar */
@@ -26,6 +42,8 @@ header {
 	height: 28px;
 }
 
+
+/*======================*/
 .nav-opcoes{
 	width: 30px;
 	height: 100%;
@@ -51,8 +69,8 @@ header {
 	padding: 4px 0;
 	top: var(--opcoes-items-top);
 	left: 0;
-	background-color: rgb(35,32,36);
-	z-index: 9999;
+	background-color: rgb(27, 27, 27);
+	z-index: var(--nav-opcoes-items-index);
 }
 
 .nav-opcoes-items > div {
@@ -63,22 +81,26 @@ header {
 }
 
 .nav-opcoes-items > div:hover{
-	background-color: rgb(55, 51, 58);
+	background-color: rgb(36, 36, 36);
 }
+
+/*======================*/
+
+
 
 nav{
 	width: 100%;
 	height: 100%;
-	background-color: rgb(35,32,36);
+	background-color: black;
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
 	color: white;
 	user-select: none;
+	position: relative;
 }
 
 .nav-group{	
-	right: 0;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -95,20 +117,46 @@ nav{
 	transition: all ease .4s;
 }
 
-.nav-group > div:hover{
-	background-color: turquoise;
+.nav-group > div:first-child:hover{
+	background-color: rgba(104, 104, 104, 0.514);
+}
+
+.nav-group > div:last-child:hover{
+	background-color: rgb(228, 39, 39);
 }
 
 .nav-nomeJogo{
-	flex: 1;
 	font-size: 16px;
-	font-family: var(--font-family);
+	font-family: var(--titlebar-fontfamily);
+	font-weight: var(--titlebar-fontweight);
 	height: 100%;
 	display: flex;
 	align-items: center;
 	padding: 4px 8px;
 	-webkit-app-region: drag;
+	width: 100%;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -119,11 +167,11 @@ nav{
 	width: 100%;
 	position: absolute;
 	height: var(--jogo-height);
-	background-color: #333;
+	background-color: black;
 	display: flex;
 	flex-direction: column;
 	color: white;
-	z-index: 999;
+	z-index: var(--inicio-index);
 	transition: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .inicio-topo{
@@ -135,8 +183,22 @@ nav{
 }
 
 .nome-jogo{
-	font-size: 50px;
-	font-weight: bold;
+	color: rgba(255,255,255,1);
+	font-family: var(--logo-fontfamily);
+	font-weight: var(--logo-fontweight);
+	font-style: var(--logo-fontstyle);
+	font-size: 38px;
+	letter-spacing: 4px;
+	cursor: default;
+}
+
+.nome-jogo > span {
+	color: rgb(228, 62, 62);
+}
+
+.nome-jogo > span.minusculo{
+	font-size: 16px;
+	color: rgb(255, 255, 255);
 }
 
 .nome-pessoa{
@@ -146,32 +208,86 @@ nav{
 .inicio-baixo{
 	flex: 1;
 	display: flex;
-	justify-content: center;
+	padding: 30px 20px;
+	justify-content: flex-end;
 	align-items: center;
 	flex-direction: column;
+	position: relative;
+	font-family: var(--button-fontfamily);
+	font-weight: var(--button-fontweight);
 }
 
-.inicio-opcao{
-	width: 180px;
-	height: 50px;
-	margin: 5px 0;
+.inicio-baixo-group{
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	border-radius: 24px;
-	background-color: rgba(255,255,255,.4);
-	box-shadow: 0 0 .4rem rgba(211,211,211,.2);
-	cursor: pointer;
-	border: none;
-	text-decoration: none;
-	outline: none;
-	transition: all ease .4s;
+	z-index: var(--inicio-baixo-group-index);
 }
 
-.inicio-opcao:hover{
-	background-color: rgba(255,255,255,.9);
-	box-shadow: 0 0 .6em rgba(211,211,211,.92);
+.saiba-mais, .config {
+	width: 150px;
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
+
+.lacuna{
+	width: 20px;
+	height: 100%;
+}
+
+.lacuna-click{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+}
+
+.saiba-mais{
+	color: white;
+	background: rgb(43, 43, 43);
+	box-shadow: 2px 2px .5rem rgba(43, 43, 43, 0.7);
+	cursor: pointer;
+}
+
+.config{
+	background: rgb(202, 51, 51);
+	box-shadow: -2px 2px .4rem rgba(255, 63, 63, 0.411);
+	cursor: pointer;
+}
+
+.jogar{
+	width: 95%;
+	height: 70px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	cursor: default;
+	margin-top: 50px;
+}
+
+.jogar::before{
+	content: "";
+	position: absolute;
+	background: rgb(241, 203, 203);
+	width: 100%;
+	height: 1px;
+	bottom: 0;
+	border-radius: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -207,8 +323,51 @@ nav{
 .andamento{
 	width: 100%;
 	height: var(--andamento-height);
-	background-color: #333;
+	background-color: rgb(20, 20, 20);
+	box-shadow: inset 0 0 1rem rgba(0,0,0,.4);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 }
+
+.andamento-title{
+	font-size: 20px;
+	color: white;
+}
+
+.andamento-bar{
+	width: 250px;
+	height: 12.5px;
+	margin-top: 8px;
+	background-color: rgb(41, 41, 41);
+	border-radius: 15px;
+}
+
+.progress-bar{
+	background-color: rgb(207, 10, 10);
+	width: 0%;
+	height: 100%;
+	border-radius: 15px;
+	position: relative;
+	transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) .3s;
+}
+
+.progress-bar::before{
+	content:"";
+	position: absolute;
+	right: -9px;
+	top: -2.75px;
+	width: 18px;
+	height: 18px;
+	background-color: rgb(250, 12, 12);
+	border-radius: 50%;
+}
+
+
+
+
+
 
 
 
@@ -225,7 +384,8 @@ nav{
 	flex: 1;
 	display: flex;
 	flex-direction: column;
-	background-color: rgb(226, 169, 131);;
+	background-color: rgb(14, 14, 14);
+	color: white;
 }
 
 .texto{
@@ -270,7 +430,7 @@ nav{
 	height: 100%;
 	position: relative;
 	border-radius: var(--carta-radius);
-	background-color: rgb(36, 36, 36);
+	background-color: rgb(20, 20, 20);
 	perspective: 500px;
 }
 
@@ -279,7 +439,7 @@ nav{
 	width: 100%;
 	height: 100%;
 	border-radius: var(--carta-radius);
-	z-index: 99;
+	z-index: var(--carta-index);
 	background-position:center;
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -341,7 +501,7 @@ nav{
 .opcoes{
 	width: 100%;
 	height: var(--opcoes-height);
-	background-color: #333;
+	background-color: black;
 }
 
 /* Fim do Jogo */

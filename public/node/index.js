@@ -40,11 +40,11 @@ $(".nav-opcoes").on("click", () => {
 	if(navOpcoes) {
 		navOpcoes = false 
 		$('.nav-opcoes-items').css("display", "none")
-		$(".nav-opcoes").css("background-color", "rgb(35,32,36)")
+		$(".nav-opcoes").css("background-color", "black")
 	} else {
 		navOpcoes = true
 		$('.nav-opcoes-items').css("display", "block")
-		$(".nav-opcoes").css("background-color", "rgb(55, 51, 58)")
+		$(".nav-opcoes").css("background-color", "rgb(27, 27, 27)")
 	}
 })	
 
