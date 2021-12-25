@@ -22,11 +22,11 @@ function nextFase(i) {
     let html = 
     `
     <div class="carta" id="carta-${i}" style="background-image: url(${fotoPersonagem})">
-        <div class="carta-esquerda">
-            ${textoEsquerda}
-        </div>
         <div class="carta-direita">
             ${textoDireita}
+        </div>    
+        <div class="carta-esquerda">
+            ${textoEsquerda}
         </div>
     </div>
     `
@@ -35,18 +35,21 @@ function nextFase(i) {
     positionY_inicial = document.getElementById(`carta-${i}`).offsetLeft
     positionX_inicial = document.getElementById(`carta-${i}`).offsetTop
     carta = document.getElementById(`carta-${i}`)
-    carta.style.transition = "0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)"
+    carta.style.transition = "0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)"
     carta.style.opacity = 1
-    setTimeout(()=>{
+    temporizador.push(setTimeout(()=>{
         carta.style.transform = "rotateY(0deg)"
         setTimeout(()=>{
+            carta.addEventListener("mousedown", dragStart)
+        }, 250)
+        setTimeout(()=>{
             carta.style.transition = "none"
-        },600)
-    },100)
+        },400)
+    },50))
     s(".personagem-nome").innerHTML = nomePersonagem 
     carta.style.backgroundImage = fotoPersonagem      
     s(".texto").innerHTML = textoDialogo  
-    carta.addEventListener("mousedown", dragStart)
+    
     direction = ""
 }
 
@@ -54,7 +57,10 @@ function dragStart(e) {
     itemX = e.pageX - carta.offsetLeft;
     itemY = e.pageY - carta.offsetTop;
     direction = ""
-
+    if (temporizador.length > 0) {
+        for (let z = 0; z<temporizador.length; z++) 
+            clearTimeout(temporizador[z])
+    }
     carta.style.opacity = 1
     carta.style.transition = "none"
 
@@ -111,8 +117,6 @@ function dragEnd() {
                 carta.style.top = (parseInt(carta.style.top) + 25) + "px"
                 carta.style.opacity = 0
                 setTimeout(()=>{
-                    carta.style.top = positionY_inicial
-                    carta.style.left = positionX_inicial
                     carta.style.transform = "rotateY(180deg)"
                     s('.carta-esquerda').style.opacity = 0 
                     s('.carta-direita').style.opacity = 0
@@ -132,8 +136,6 @@ function dragEnd() {
                 carta.style.top = (parseInt(carta.style.top) + 25) + "px"
                 carta.style.opacity = 0
                 setTimeout(()=>{
-                    carta.style.top = positionY_inicial
-                    carta.style.left = positionX_inicial
                     carta.style.transform = "rotateY(180deg)"
                     s('.carta-esquerda').style.opacity = 0 
                     s('.carta-direita').style.opacity = 0
@@ -144,7 +146,7 @@ function dragEnd() {
             },100))
         }
     } else {
-        carta.style.transition = "all ease .4s"
+        carta.style.transition = "all ease .2s"
         temporizador.push(setTimeout(() => {
             carta.style.top = positionY_inicial
             carta.style.left = positionX_inicial
@@ -154,8 +156,8 @@ function dragEnd() {
             setTimeout(() => {
                 carta.addEventListener("mousedown", dragStart)
                 carta.style.transition = "none"
-            }, 400);
-        }, 100))
+            }, 200);
+        }, 50))
     }
 
 

@@ -52,6 +52,7 @@ header {
 	top: var(--opcoes-items-top);
 	left: 0;
 	background-color: rgb(35,32,36);
+	z-index: 9999;
 }
 
 .nav-opcoes-items > div {
@@ -296,7 +297,7 @@ nav{
 .carta-direita{
 	width: 165px;
 	opacity: 0;
-	text-align: end;
+	text-align: start;
 	user-select: none;
 	
 }
@@ -304,7 +305,7 @@ nav{
 .carta-esquerda{
 	width: 165px;
 	opacity: 0;
-	text-align: start;
+	text-align: end;
 	user-select: none;
 }
 
