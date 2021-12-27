@@ -243,10 +243,10 @@ const Dialogos = [
         personagemImagem: "p1.jpeg",
         texto: `Opa que bom ver você aqui, o jogo ainda não acabou, porém a história parou.`,
         direita: {
-            dialogo: `Não me solta na direita`
+            dialogo: `Ver o layout Final`
         },
         esquerda: {
-            dialogo: `Não me solta na esquerda`
+            dialogo: `Ver o layout Final`
         }
     },
 ]

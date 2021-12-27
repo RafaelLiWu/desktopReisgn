@@ -8,7 +8,7 @@
 
 	<!-- FontAwesome -->
 	<link rel="stylesheet" type="text\css" href=".\assets\css\all.min.css">
-	<script src=".\assets\js\all.js"></script>
+	
 
 	<!-- Node -->
 	<script defer src=".\node\index.js"></script>
@@ -48,7 +48,7 @@
 
 
 
-    <!-- Introdução/Inicio -->
+	<!-- Introdução/Inicio -->
 	<div class="inicio">
 		<div class="inicio-topo" onclick="startGame()">
 			<div class="nome-jogo">A<span>L</span><span class="minusculo">ibertação</span></div>
@@ -74,27 +74,39 @@
 	<!-- Área do jogo! -->
 	<div class="jogo">
 		<section class="andamento">
-				<div class="andamento-title">
-					Progresso
-				</div>
-				<div class="andamento-bar">
-					<div class="progress-bar"></div>
-				</div>
+			<div class="andamento-title">
+				Progresso
+			</div>
+			<div class="andamento-bar">
+				<div class="progress-bar"></div>
+			</div>
 		</section>
 
 		<section class="interface">
 			<div class="texto">
 
 			</div>
+			  <div class="guia">
+				<div class="guia-left"> 
+				    <i class="fas fa-chevron-left"></i>
+				    <i class="fas fa-chevron-left"></i>
+				    <i class="fas fa-chevron-left"></i>
+				</div>
+				<div class="guia-title">Deslize</div>
+				<div class="guia-right"> 
+				    <i class="fas fa-chevron-right"></i> 
+				    <i class="fas fa-chevron-right"></i>
+				    <i class="fas fa-chevron-right"></i>
+				</div>
+			   </div>
 			<div class="personagem">
 				<div id="fundo-carta" class="fundo-carta">
 					<div class="carta" id="carta-0">
 						<div class="carta-esquerda">
-							Acho que irei com minha roupa normal, não é muito o que um escravo negro pode escolher!
 						</div>
 						<div class="carta-direita">
-							Acho que irei com minha roupa normal, não é muito o que um escravo negro pode escolher!
 						</div>
+						<div class="carta-sombra-topo"></div>
 					</div>
 				</div>
 			</div>
@@ -107,8 +119,46 @@
 		</section>
 	</div>
 
+
+	<!-- Fim do jogo! -->
+	<div class="final" onclick="recomecar()">
+		<div class="final-badges">
+			<div class="badge-final commom">Homen</div>
+			<div class="badge-final rare">Preso</div>
+			<div class="badge-final uncommom">19 Dias</div>
+			<div class="badge-final magic">2 Dias na Prisão</div>
+		</div>
+		<div class="final-stats">
+			<div class="final-title">
+				Fugitivo em Massa!
+			</div>
+			<div class="final-stats-inside">
+				<div class="final-time">
+					12min
+				</div>
+
+				<div class="final-score">
+					1900 <span class="pontos">pts.</span>
+				</div>
+
+				<div class="final-mensagem">
+					Na proxima te pegaremos, e você irá se arrepender de ter fugido... 
+				</div>
+			</div>
+		</div>
+		<div class="jogar recomecar">
+			Clique para recomeçar
+		</div>
+		<div class="final-credits">
+			Jogo feito em ElectronJS,
+			<br>Inspirado pelo livro Úrsula de Maria Firmina dos Reis.
+			<br>Pelo Grupo CRIFF
+		</div>
+	</div>
+
 	<script src=".\dialogos.js"></script>
 	<script src=".\assets\js\inicio.js"></script>
+	<script src=".\assets\js\all.js"></script>
 	<script src=".\mecanismo\mecanica.js"></script>
 </body>
 

@@ -26,13 +26,14 @@ function nextFase(i) {
     let textoEsquerda = Dialogos[i].esquerda.dialogo
     let html = 
     `
-    <div class="carta" id="carta-${i}" style="background-image: url(${fotoPersonagem})">
+    <div class="carta" id="carta-${i}">
         <div class="carta-direita">
             ${textoDireita}
         </div>    
         <div class="carta-esquerda">
             ${textoEsquerda}
         </div>
+        <div class="carta-sombra-topo"></div>
     </div>
     `
     s(".fundo-carta").innerHTML = html
@@ -90,12 +91,14 @@ function dragMove(e) {
     let opacity = (e.pageX - itemX) * 0.03
 
     if (e.pageX - itemX < 0) {
-        document.querySelector('.carta-esquerda').style.opacity = opacity * (-1)
-        document.querySelector('.carta-direita').style.opacity = 0
+        s('.carta-esquerda').style.opacity = opacity * (-1)
+        s('.carta-sombra-topo').style.opacity = opacity * (-1)
+        s('.carta-direita').style.opacity = 0
     }
     else if (e.pageX - itemX > 0) {
-        document.querySelector('.carta-direita').style.opacity = opacity
-        document.querySelector('.carta-esquerda').style.opacity = 0
+        s('.carta-direita').style.opacity = opacity
+        s('.carta-sombra-topo').style.opacity = opacity
+        s('.carta-esquerda').style.opacity = 0
     }
 
     if (e.pageX - itemX < -35) {
@@ -130,6 +133,8 @@ function dragEnd() {
                     }, 100)
                 },300)
             },100))
+        } else {
+           s(".final").style.marginTop = '0px'
         }
     } else if (direction === "esquerda") {
         direction = ''
@@ -149,6 +154,8 @@ function dragEnd() {
                     }, 100)
                 },300)
             },100))
+        } else {
+           s(".final").style.marginTop = '0px'
         }
     } else {
         carta.style.transition = "all ease .2s"
@@ -171,3 +178,54 @@ function dragEnd() {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Template
+// ======================================================================
+setInterval(()=>{
+
+    document.querySelectorAll(".fa-chevron-right")[0].style.marginLeft = "4px"
+    document.querySelectorAll(".fa-chevron-right")[1].style.marginLeft = "3px"
+    document.querySelectorAll(".fa-chevron-right")[2].style.marginLeft = "1px"
+    document.querySelectorAll(".fa-chevron-right")[2].style.opacity = "60%"
+    document.querySelectorAll(".fa-chevron-right")[1].style.opacity = "40%"
+    document.querySelectorAll(".fa-chevron-right")[0].style.opacity = "20%"
+
+    document.querySelectorAll(".fa-chevron-left")[0].style.marginRight = "1px"
+    document.querySelectorAll(".fa-chevron-left")[1].style.marginRight = "3px"
+    document.querySelectorAll(".fa-chevron-left")[2].style.marginRight = "4px"
+    document.querySelectorAll(".fa-chevron-left")[0].style.opacity = "60%"
+    document.querySelectorAll(".fa-chevron-left")[1].style.opacity = "40%"
+    document.querySelectorAll(".fa-chevron-left")[2].style.opacity = "20%"
+
+
+    setTimeout(()=>{
+       
+    document.querySelectorAll(".fa-chevron-right")[0].style.marginLeft = "0px"
+    document.querySelectorAll(".fa-chevron-right")[1].style.marginLeft = "0px"
+    document.querySelectorAll(".fa-chevron-right")[2].style.marginLeft = "0px"
+    document.querySelectorAll(".fa-chevron-right")[2].style.opacity = "100%"
+    document.querySelectorAll(".fa-chevron-right")[1].style.opacity = "80%"
+    document.querySelectorAll(".fa-chevron-right")[0].style.opacity = "60%"
+
+    document.querySelectorAll(".fa-chevron-left")[0].style.marginRight = "0px"
+    document.querySelectorAll(".fa-chevron-left")[1].style.marginRight = "0px"
+    document.querySelectorAll(".fa-chevron-left")[2].style.marginRight = "0px"
+    document.querySelectorAll(".fa-chevron-left")[0].style.opacity = "100%"
+    document.querySelectorAll(".fa-chevron-left")[1].style.opacity = "80%"
+    document.querySelectorAll(".fa-chevron-left")[2].style.opacity = "60%"
+    },500)
+
+},1000)

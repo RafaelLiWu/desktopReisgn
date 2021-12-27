@@ -43,7 +43,7 @@ function createWindow() {
 	ipcMain.on("openInfo", (event, args) => {
 		dialog.showMessageBox(win, {
 			title: "Informações",
-			message: "Esse jogo está em fases de desenvolvimentos inciais, logo haverá atualizações..",
+			message: "A Versão 2 está em fases de desenvolvimentos inciais, logo haverá atualizações..",
 			buttons: [
 				"Ok"
 			]
