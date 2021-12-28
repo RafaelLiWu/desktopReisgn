@@ -7,6 +7,7 @@ function startGame() {
 
 function recomecar() {
     fase = 0 
+    badges = []
     s(".progress-bar").style.width = "0%"
     nextFase(fase)
     s(".final").style.marginTop = "700px"

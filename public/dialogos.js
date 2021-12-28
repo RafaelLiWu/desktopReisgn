@@ -91,10 +91,12 @@ const Dialogos = [
         direita: {
             dialogo: `Tudo preparado para hoje à noite?`,
             buscar: 7,
+            badge: ["Preocupado", "commom"]
         },
         esquerda: {
             dialogo: `Ansioso por hoje?`,
             buscar: 8,
+            badge: ["Ansioso", "rare"]
         }
     },
     {
@@ -105,6 +107,7 @@ const Dialogos = [
         direita: {
             dialogo: `Espero que dê tudo certo sim, mas tenho um mal pressentimento`,
             buscar: 9,
+            badge: ["Azarado", "uncommom"]
         },
         esquerda: {
             dialogo: `É claro que vai, você ama Úrsula`,
@@ -119,6 +122,7 @@ const Dialogos = [
         direita: {
             dialogo: `Espero que dê tudo certo sim, mas tenho um mal pressentimento`,
             buscar: 9,
+            badge: ["Azarado", "uncommom"]
         },
         esquerda: {
             dialogo: `É claro que vai, você ama Úrsula`,
@@ -133,10 +137,12 @@ const Dialogos = [
         direita: {
             dialogo: `Tens de estar certo, melhor eu parar de falar isso...`, 
             buscar: 11, 
+            badge: ["Reconhecido", "magic"]
         },
         esquerda: {
             dialogo: `Tens de estar certo, melhor eu parar de falar isso...`,
             buscar: 11,   
+            badge: ["Reconhecido", "magic"]
         },
     },
     {
@@ -161,10 +167,12 @@ const Dialogos = [
         direita: {
             dialogo: `Imagino que o terno branco seja melhor para essa situação`,
             buscar: 12,
+            badge: ["Estravagante", "uncommom"]
         },
         esquerda: {
             dialogo: `Claramente o terno preto vai ser melhor.`,
             buscar: 12,
+            badge: ["Classico", "commom"]
         }
     },
     {
@@ -175,10 +183,12 @@ const Dialogos = [
         direita: {
             dialogo: `Acho que irei com aquele terno que você me deu`,
             buscar: 13,
+            badge: ["Amigavel", "uncommom"]
         },
         esquerda: {
             dialogo: `Acho que irei com minha roupa normal, não é muito o que um escravo negro pode escolher!`,
             buscar: 14,
+            badge: ["?", "magic"]
         }
     },
     {
@@ -188,11 +198,11 @@ const Dialogos = [
         texto: `Ótima escolha! Você fica ótimo usando ele.`,
         direita: {
             dialogo: `Obrigado amigo, é claro que eu fico bem com algo que você me deu`,  
-            buscar: 15,
+            buscar: 15
         }, 
         esquerda: {
             dialogo: `Obrigado amigo, é claro que eu fico bem com algo que você me deu`,
-            buscar: 15,
+            buscar: 15
         }
     },
     {
@@ -202,12 +212,12 @@ const Dialogos = [
         texto: `Pare com isso amigo, é claro que você deve usar o que quer!"`,
         direita: {
             dialogo: `Então tudo bem, acho que irei com aquele terno que você me deu.`, 
-            buscar: 15,
+            buscar: 15
         }, 
         esquerda: {
             dialogo: `Então tudo bem, acho que irei com aquele terno que você me deu.`, 
-            buscar: 15,
-        }, 
+            buscar: 15
+        }
     },
     {
         id: 15,

@@ -1,4 +1,8 @@
-const { ipcRenderer } = require("electron")
+const { 
+	ipcRenderer, 
+	desktopCapturer,
+	dialog
+} = require("electron")
 const $ = require("jquery")
 const { path } = require("path")
 let navOpcoes = false;
@@ -12,6 +16,11 @@ $(".nav-close").on("click", () => {
 
 $(".nav-minimize").on("click", () => {
 	ipcRenderer.send("windowMinimize")
+})
+
+$(".saiba-mais").on("click", () => {
+	let plat = item.getAttribute("plat")
+	ipcRenderer.send("openPlat", plat)
 })
 
 $(".nav-item").each( (index, item) => {
@@ -28,8 +37,9 @@ $(".nav-item").each( (index, item) => {
 		navOpcoes = false
 	})
 })
-
-
+document.querySelector(".screenshot").addEventListener("click", () => {
+	ipcRenderer.send("screenshot")
+});
 
 
 
@@ -47,7 +57,3 @@ $(".nav-opcoes").on("click", () => {
 		$(".nav-opcoes").css("background-color", "rgb(27, 27, 27)")
 	}
 })	
-
-
-
-

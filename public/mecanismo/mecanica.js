@@ -8,11 +8,16 @@ var carta,
     direction = "",
     fase = 0,
     temporizador = [],
-    ponteiro = 0
+    ponteiro = 0,
+    badges = []
+
 
 const porcentagem = Math.round(100 / (Dialogos.length - 1))
 
+function badge(item) { badges.push( item ) }
+
 function nextFase(i) {
+    
     if (i != 0) s(".progress-bar").style.width = (porcentagem * i)+"%"
     
     if (temporizador.length > 0) {
@@ -114,7 +119,9 @@ function dragMove(e) {
 
 function dragEnd() {
     if (direction === "direita") {
-        if(Dialogos[fase].direita.buscar != undefined || Dialogos[fase].direita.buscar != null) {
+        if(Dialogos[fase].direita.buscar != undefined || Dialogos[fase].direita.buscar != null) { 
+            if(Dialogos[fase].direita.badge != undefined || Dialogos[fase].direita.badge != null) badge(Dialogos[fase].direita.badge)
+            
             direction = ''
             carta.removeEventListener("mousedown", dragStart)
             direction = ''
@@ -134,11 +141,23 @@ function dragEnd() {
                 },300)
             },100))
         } else {
-           s(".final").style.marginTop = '0px'
+            let html = ""
+            badges.forEach(element => {
+                html += `<div class="badge-final ${element[1]}">${element[0]}</div>`  
+                console.log(element)
+                console.log(element[1])
+                console.log(element[0])
+            });
+            console.log(html)
+            console.log(badges)
+            s(".final-badges").innerHTML = html
+            s(".final").style.marginTop = '0px'
         }
     } else if (direction === "esquerda") {
         direction = ''
-        if(Dialogos[fase].esquerda.buscar != undefined || Dialogos[fase].esquerda.buscar != null) {    
+        if(Dialogos[fase].esquerda.buscar != undefined || Dialogos[fase].esquerda.buscar != null) {
+            if(Dialogos[fase].esquerda.badge != undefined || Dialogos[fase].esquerda.badge != null) badge(Dialogos[fase].esquerda.badge)
+
             fase = Dialogos[fase].esquerda.buscar
             carta.style.transition = "all ease .3s"
             temporizador.push(setTimeout(()=>{
@@ -155,7 +174,17 @@ function dragEnd() {
                 },300)
             },100))
         } else {
-           s(".final").style.marginTop = '0px'
+            let html = ""
+            badges.forEach(element => {
+                html += `<div class="badge-final ${element[1]}">${element[0]}</div>` 
+                console.log(element)
+                console.log(element[1])
+                console.log(element[0])
+            });
+            console.log(html)
+            console.log(badges)
+            s(".final-badges").innerHTML = html
+            s(".final").style.marginTop = '0px'
         }
     } else {
         carta.style.transition = "all ease .2s"
@@ -210,22 +239,20 @@ setInterval(()=>{
     document.querySelectorAll(".fa-chevron-left")[1].style.opacity = "40%"
     document.querySelectorAll(".fa-chevron-left")[2].style.opacity = "20%"
 
-
     setTimeout(()=>{
-       
-    document.querySelectorAll(".fa-chevron-right")[0].style.marginLeft = "0px"
-    document.querySelectorAll(".fa-chevron-right")[1].style.marginLeft = "0px"
-    document.querySelectorAll(".fa-chevron-right")[2].style.marginLeft = "0px"
-    document.querySelectorAll(".fa-chevron-right")[2].style.opacity = "100%"
-    document.querySelectorAll(".fa-chevron-right")[1].style.opacity = "80%"
-    document.querySelectorAll(".fa-chevron-right")[0].style.opacity = "60%"
+        document.querySelectorAll(".fa-chevron-right")[0].style.marginLeft = "0px"
+        document.querySelectorAll(".fa-chevron-right")[1].style.marginLeft = "0px"
+        document.querySelectorAll(".fa-chevron-right")[2].style.marginLeft = "0px"
+        document.querySelectorAll(".fa-chevron-right")[2].style.opacity = "100%"
+        document.querySelectorAll(".fa-chevron-right")[1].style.opacity = "80%"
+        document.querySelectorAll(".fa-chevron-right")[0].style.opacity = "60%"
 
-    document.querySelectorAll(".fa-chevron-left")[0].style.marginRight = "0px"
-    document.querySelectorAll(".fa-chevron-left")[1].style.marginRight = "0px"
-    document.querySelectorAll(".fa-chevron-left")[2].style.marginRight = "0px"
-    document.querySelectorAll(".fa-chevron-left")[0].style.opacity = "100%"
-    document.querySelectorAll(".fa-chevron-left")[1].style.opacity = "80%"
-    document.querySelectorAll(".fa-chevron-left")[2].style.opacity = "60%"
+        document.querySelectorAll(".fa-chevron-left")[0].style.marginRight = "0px"
+        document.querySelectorAll(".fa-chevron-left")[1].style.marginRight = "0px"
+        document.querySelectorAll(".fa-chevron-left")[2].style.marginRight = "0px"
+        document.querySelectorAll(".fa-chevron-left")[0].style.opacity = "100%"
+        document.querySelectorAll(".fa-chevron-left")[1].style.opacity = "80%"
+        document.querySelectorAll(".fa-chevron-left")[2].style.opacity = "60%"
     },500)
 
 },1000)
