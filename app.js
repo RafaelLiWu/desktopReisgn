@@ -62,13 +62,10 @@ function createWindow() {
 			.then((img) => {
 				dialog
 					.showSaveDialog({
-						title: "Select the File Path to save",
-
+						title: "Selecione aonde deseja salvar o arquivo",
 						defaultPath: path.join(__dirname,
 							"../assets/image.png"),
-
-						buttonLabel: "Save",
-
+						buttonLabel: "Salvar",
 						filters: [
 							{
 								name: "Image Files",
@@ -79,11 +76,9 @@ function createWindow() {
 					})
 					.then((file) => {
 						if (!file.canceled) {
-							console.log(file.filePath.toString());
 							fs.writeFile(file.filePath.toString(),
 								img.toPNG(), "base64", function (err) {
 									if (err) throw err;
-									console.log("Saved!");
 								});
 						}
 					})

@@ -1,3 +1,5 @@
+const pathm = require("path")
+
 // Jogo
 // ==============================================================================================
 var carta,
@@ -11,6 +13,17 @@ var carta,
     ponteiro = 0,
     badges = []
 
+// const CartaPlace = new Audio(pathm.join(__dirname, "audios", "CartaPlace.wav"))
+const CartaJogada = new Audio(pathm.join(__dirname, "audios", "CartaJogada.wav"))
+let somAtual = null
+
+function stopSound() {
+    if(somAtual != null) {
+        somAtual.pause()
+        somAtual.currentTime = 0
+        somAtual = null
+    }
+}
 
 const porcentagem = Math.round(100 / (Dialogos.length - 1))
 
@@ -65,6 +78,21 @@ function nextFase(i) {
 }
 
 function dragStart(e) {
+
+    // Sound
+    // if(somAtual != null && somAtual.currentTime == 0 || somAtual == null) {
+    //     somAtual = CartaPlace
+    //     somAtual.play()
+    // } else {
+    //     stopSound()
+    //     somAtual = CartaPlace
+    //     somAtual.play()
+    // }
+
+
+
+
+
     itemX = e.pageX - carta.offsetLeft;
     itemY = e.pageY - carta.offsetTop;
     direction = ""
@@ -119,6 +147,14 @@ function dragMove(e) {
 
 function dragEnd() {
     if (direction === "direita") {
+        if(somAtual != null) {
+            if(somAtual.currentTime != 0){
+                stopSound()
+            }
+        }
+        somAtual = CartaJogada
+        somAtual.play()
+
         if(Dialogos[fase].direita.buscar != undefined || Dialogos[fase].direita.buscar != null) { 
             if(Dialogos[fase].direita.badge != undefined || Dialogos[fase].direita.badge != null) badge(Dialogos[fase].direita.badge)
             
@@ -154,6 +190,17 @@ function dragEnd() {
             s(".final").style.marginTop = '0px'
         }
     } else if (direction === "esquerda") {
+        if(somAtual != null) {
+            if(somAtual.currentTime != 0){
+                stopSound()
+            }
+        }
+
+        somAtual = CartaJogada
+        somAtual.play()
+
+
+
         direction = ''
         if(Dialogos[fase].esquerda.buscar != undefined || Dialogos[fase].esquerda.buscar != null) {
             if(Dialogos[fase].esquerda.badge != undefined || Dialogos[fase].esquerda.badge != null) badge(Dialogos[fase].esquerda.badge)
@@ -187,6 +234,14 @@ function dragEnd() {
             s(".final").style.marginTop = '0px'
         }
     } else {
+        // if(somAtual.currentTime != 0){
+        //     stopSound()
+        // }
+
+        // somAtual = CartaPlace
+        // somAtual.play()
+
+
         carta.style.transition = "all ease .2s"
         temporizador.push(setTimeout(() => {
             carta.style.top = positionY_inicial
