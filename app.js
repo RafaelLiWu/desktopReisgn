@@ -99,6 +99,10 @@ ipcMain.on("openPlat", (event, args) => {
 		require('electron').shell.openExternal(`http://criffitaperuna.000webhostapp.com/`)
 })
 
+ipcMain.on("openSocial", (event, args) => {
+	if(args) require("electron").shell.openExternal(args)
+})
+
 app.whenReady().then(() => {
 	createWindow()
 	app.on('activate', () => {

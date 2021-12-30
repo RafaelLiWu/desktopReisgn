@@ -9,7 +9,6 @@
 	<!-- FontAwesome -->
 	<link rel="stylesheet" type="text\css" href=".\assets\css\all.min.css">
 	
-
 	<!-- Node -->
 	<script defer src=".\node\index.js"></script>
 
@@ -44,7 +43,7 @@
 			</div>
 		</nav>
 	</header>
-	
+
 
 
 
@@ -56,9 +55,9 @@
 		<div class="inicio-baixo">
 			<div class="lacuna-click" onclick="startGame()"></div>
 			<div class="inicio-baixo-group">
-				<div class="inicio-opcao config">Configurações</div>
+				<div class="inicio-opcao config" onclick="openConfig()">Configurações</div>
 				<div class="lacuna"></div>
-				<div class="inicio-opcao saiba-mais" plat="criff">Saiba Mais</div>
+				<div class="inicio-opcao saiba-mais" onclick="openSaiba()">Saiba Mais</div>
 			</div>
 			<div class="inicio-opcao jogar" onclick="startGame()">Click para Jogar</div>
 		</div>
@@ -86,19 +85,19 @@
 			<div class="texto">
 
 			</div>
-			  <div class="guia">
-				<div class="guia-left"> 
-				    <i class="fas fa-chevron-left"></i>
-				    <i class="fas fa-chevron-left"></i>
-				    <i class="fas fa-chevron-left"></i>
+			<div class="guia">
+				<div class="guia-left">
+					<i class="fas fa-chevron-left"></i>
+					<i class="fas fa-chevron-left"></i>
+					<i class="fas fa-chevron-left"></i>
 				</div>
 				<div class="guia-title">Deslize</div>
-				<div class="guia-right"> 
-				    <i class="fas fa-chevron-right"></i> 
-				    <i class="fas fa-chevron-right"></i>
-				    <i class="fas fa-chevron-right"></i>
+				<div class="guia-right">
+					<i class="fas fa-chevron-right"></i>
+					<i class="fas fa-chevron-right"></i>
+					<i class="fas fa-chevron-right"></i>
 				</div>
-			   </div>
+			</div>
 			<div class="personagem">
 				<div id="fundo-carta" class="fundo-carta">
 					<div class="carta" id="carta-0">
@@ -115,8 +114,114 @@
 			</div>
 		</section>
 		<section class="opcoes">
+			<div class="opcoes-item" onclick="openConfig()">
+				<i class="fas fa-cog opcoes-item-config"></i>
+				<span class="opcoes-item-title">Config</span>
+			</div>
 		</section>
 	</div>
+
+
+
+
+
+
+
+
+	<!-- Área de Configurações -->
+	<div class="pconfig">
+		<div class="pconfig-title-area">
+			<button class="voltar" onclick="closeConfig()">
+				<i class="fas fa-sort-down"></i>
+			</button>
+			<span class="pconfig-title">Configurações</span>
+		</div>
+		<div class="pconfig-area">
+			<div class="pconfig-item item-audio">
+				<div class="pconfig-item-left">
+					<div class="pconfig-item-icon">
+						<i class="fas fa-volume-up"></i>
+					</div>
+				</div>
+				<div class="pconfig-item-right">
+					<div class="pconfig-item-title">
+						<span class="item-audio-title">Audio</span> 
+						<span class="item-audio-subtitle">Configure o audio do jogo</span> 
+						<span id="item-audio-subaudio">100%</span>
+					</div>
+					<div class="container">
+						<input type="range" id="range" value="100">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+	<!-- Área do Saiba Mais -->
+	<div class="psaiba">
+		<div class="pconfig-title-area">
+			<button class="voltar" onclick="closeSaiba()">
+				<i class="fas fa-sort-down"></i>
+			</button>
+			<span class="pconfig-title">Saiba Mais</span>
+		</div>
+		<div class="psaiba-texto">
+			Olá, somos estudantes do IFF (Instituto Federal Fluminense) e esse é um projeto acadêmico para a área de Pratica Profissional e Informática Básica com o Professor João Felipe Durante o segundo ano do ensino médio. 
+			O Jogo foi feito com referência de um jogo de Smartphone chamado Reisgn e também o Lapse, além disso, fizemos o jogo baseado no livro Úrsula, de Maria Firmina dos Reis. Nesse projeto tentamos criar um jogo aonde Túlio, personagem principal do jogo, vai no rumo de mudar o final da história de diferentes formas.
+		</div>
+		<div class="psaiba-pessoal">
+			<div class="psaiba-pessoa">
+				<div class="psaiba-pessoa-nome">João Felipe Barbosa Borges</div>
+				<div class="psaiba-pessoa-sociais"></div>
+			</div>
+			<div class="psaiba-pessoa">
+				<div class="psaiba-pessoa-nome">Carlos Daniel</div>
+				<div class="psaiba-pessoa-sociais"></div>
+			</div>
+			<div class="psaiba-pessoa">
+				<div class="psaiba-pessoa-nome">Carlos Sérgio</div>
+				<div class="psaiba-pessoa-sociais"></div>
+			</div>
+			<div class="psaiba-pessoa">
+				<div class="psaiba-pessoa-nome">Rafael Li Wu</div>
+				<div class="psaiba-pessoa-sociais">
+					<div class="psaiba-pessoa-sociais-openPlat" open="https://github.com/RafaelLiWu">
+						<i class="fab fa-github"></i>
+					</div>
+				</div>
+			</div>
+			<div class="psaiba-pessoa">
+				<div class="psaiba-pessoa-nome">Rafael Soares</div>
+				<div class="psaiba-pessoa-sociais"></div>
+			</div>
+			<div class="psaiba-pessoa">
+				<div class="psaiba-pessoa-nome">Ronald Oliveira</div>
+				<div class="psaiba-pessoa-sociais"></div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	<!-- Fim do jogo! -->
@@ -141,9 +246,11 @@
 				</div>
 
 				<div class="final-mensagem">
-					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis cumque laborum dicta, at omnis doloremque earum voluptates quasi magni aut maxime, illum repellat voluptatum! Nihil deleniti maxime a saepe ad.
+					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis cumque laborum dicta, at omnis
+					doloremque earum voluptates quasi magni aut maxime, illum repellat voluptatum! Nihil deleniti maxime
+					a saepe ad.
 				</div>
-				
+
 				<div class="screenshot">
 					<i class="fas fa-share-square"></i>
 				</div>
@@ -160,9 +267,10 @@
 	</div>
 
 	<script src=".\dialogos.js"></script>
-	<script src=".\assets\js\inicio.js"></script>
 	<script src=".\assets\js\all.js"></script>
+	<script src=".\assets\js\inicio.js"></script>
 	<script src=".\mecanismo\mecanica.js"></script>
+	<script src=".\mecanismo\pconfig.js"></script>
 </body>
 
 </html>

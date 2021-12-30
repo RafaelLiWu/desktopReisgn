@@ -18,11 +18,6 @@ $(".nav-minimize").on("click", () => {
 	ipcRenderer.send("windowMinimize")
 })
 
-$(".saiba-mais").on("click", () => {
-	let plat = item.getAttribute("plat")
-	ipcRenderer.send("openPlat", plat)
-})
-
 $(".nav-item").each( (index, item) => {
 	item.addEventListener("click", () => {
 		let plat = item.getAttribute("plat")
@@ -33,7 +28,20 @@ $(".nav-item").each( (index, item) => {
 
 
 		$('.nav-opcoes-items').css("display", "none")
-		$(".nav-opcoes").css("background-color", "rgb(35,32,36)")
+		$(".nav-opcoes").css("background-color", "black")
+		navOpcoes = false
+	})
+})
+
+$(".psaiba-pessoa-sociais-openPlat").each( (index, item) => {
+	item.addEventListener("click", () => {
+		let open = item.getAttribute("open")
+		if(open) 
+			ipcRenderer.send("openSocial", open)
+
+
+		$('.nav-opcoes-items').css("display", "none")
+		$(".nav-opcoes").css("background-color", "black")
 		navOpcoes = false
 	})
 })

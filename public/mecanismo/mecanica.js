@@ -11,11 +11,12 @@ var carta,
     fase = 0,
     temporizador = [],
     ponteiro = 0,
-    badges = []
+    badges = [],
+    volume = 1
 
-// const CartaPlace = new Audio(pathm.join(__dirname, "audios", "CartaPlace.wav"))
+const CartaLocal = new Audio(pathm.join(__dirname, "audios", "CartaLocal.wav"))
 const CartaJogada = new Audio(pathm.join(__dirname, "audios", "CartaJogada.wav"))
-let somAtual = null
+let somAtual = CartaLocal
 
 function stopSound() {
     if(somAtual != null) {
@@ -31,6 +32,10 @@ function badge(item) { badges.push( item ) }
 
 function nextFase(i) {
     
+    if(i == 6) {
+        s(".guia").style.opacity = "0%"
+    }
+
     if (i != 0) s(".progress-bar").style.width = (porcentagem * i)+"%"
     
     if (temporizador.length > 0) {
@@ -79,15 +84,16 @@ function nextFase(i) {
 
 function dragStart(e) {
 
-    // Sound
-    // if(somAtual != null && somAtual.currentTime == 0 || somAtual == null) {
-    //     somAtual = CartaPlace
-    //     somAtual.play()
-    // } else {
-    //     stopSound()
-    //     somAtual = CartaPlace
-    //     somAtual.play()
-    // }
+    if(somAtual != null && somAtual.currentTime == 0 || somAtual == null) {
+        somAtual = CartaLocal
+        somAtual.volume = volume
+        somAtual.play()
+    } else {
+        stopSound()
+        somAtual = CartaLocal
+        somAtual.volume = volume
+        somAtual.play()
+    }
 
 
 
@@ -153,6 +159,7 @@ function dragEnd() {
             }
         }
         somAtual = CartaJogada
+        somAtual.volume = volume
         somAtual.play()
 
         if(Dialogos[fase].direita.buscar != undefined || Dialogos[fase].direita.buscar != null) { 
@@ -180,12 +187,7 @@ function dragEnd() {
             let html = ""
             badges.forEach(element => {
                 html += `<div class="badge-final ${element[1]}">${element[0]}</div>`  
-                console.log(element)
-                console.log(element[1])
-                console.log(element[0])
             });
-            console.log(html)
-            console.log(badges)
             s(".final-badges").innerHTML = html
             s(".final").style.marginTop = '0px'
         }
@@ -197,6 +199,7 @@ function dragEnd() {
         }
 
         somAtual = CartaJogada
+        somAtual.volume = volume
         somAtual.play()
 
 
@@ -224,22 +227,20 @@ function dragEnd() {
             let html = ""
             badges.forEach(element => {
                 html += `<div class="badge-final ${element[1]}">${element[0]}</div>` 
-                console.log(element)
-                console.log(element[1])
-                console.log(element[0])
             });
-            console.log(html)
-            console.log(badges)
             s(".final-badges").innerHTML = html
             s(".final").style.marginTop = '0px'
         }
     } else {
-        // if(somAtual.currentTime != 0){
-        //     stopSound()
-        // }
+        if(somAtual != null){
+            if(somAtual.currentTime != 0){
+                stopSound()
+            }
+        }
 
-        // somAtual = CartaPlace
-        // somAtual.play()
+        somAtual = CartaLocal
+        somAtual.volume = volume
+        somAtual.play()
 
 
         carta.style.transition = "all ease .2s"
