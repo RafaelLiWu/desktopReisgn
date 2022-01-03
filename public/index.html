@@ -8,7 +8,7 @@
 
 	<!-- FontAwesome -->
 	<link rel="stylesheet" type="text\css" href=".\assets\css\all.min.css">
-	
+
 	<!-- Node -->
 	<script defer src=".\node\index.js"></script>
 
@@ -44,6 +44,8 @@
 		</nav>
 	</header>
 
+	<div class="alert">
+	</div>
 
 
 
@@ -137,6 +139,32 @@
 			<span class="pconfig-title">Configurações</span>
 		</div>
 		<div class="pconfig-area">
+
+			<div class="pconfig-item item-sizes">
+				<div class="pconfig-item-left">
+					<div class="pconfig-item-icon">
+						<i class="fas fa-mobile"></i>
+					</div>
+				</div>
+				<div class="pconfig-item-right">
+					<div class="pconfig-item-title">
+						<span class="item-size-title">Efeitos</span>
+						<span class="pconfig-item-subtitle item-size-subtitle">Configure o tamanho de tela</span>
+					</div>
+					<div class="pconfig-dropdown-sizes">
+						<div class="size-active">
+							<div class="size-item-active">
+								414 x 698 
+							</div>
+							<i class="fas fa-caret-down"></i>
+						</div>
+						<div class="nonActive-size-item">
+						</div>
+					</div>
+				</div>
+			</div>
+
+
 			<div class="pconfig-item item-audio">
 				<div class="pconfig-item-left">
 					<div class="pconfig-item-icon">
@@ -145,11 +173,11 @@
 				</div>
 				<div class="pconfig-item-right">
 					<div class="pconfig-item-title">
-						<span class="item-audio-title">Audio</span> 
-						<span class="item-audio-subtitle">Configure o audio do jogo</span> 
+						<span class="item-audio-title">Efeitos</span>
+						<span class="pconfig-item-subtitle item-audio-subtitle">Configure o efeitos sonoros</span>
 						<span id="item-audio-subaudio">100%</span>
 					</div>
-					<div class="container">
+					<div class="pconfig-item-range-audio">
 						<input type="range" id="range" value="100">
 					</div>
 				</div>

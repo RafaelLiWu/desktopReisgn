@@ -1,13 +1,13 @@
 {
-  "name": "deskg",
-  "version": "1.0.0",
+  "name": "AL",
+  "version": "2.4.0",
   "description": "",
   "main": "app.js",
   "scripts": {
     "start": "electron ."
   },
   "author": "Rafael Li Wu",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "electron": "^16.0.5"
   },

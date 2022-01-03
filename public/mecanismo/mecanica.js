@@ -17,18 +17,41 @@ var carta,
 const CartaLocal = new Audio(pathm.join(__dirname, "audios", "CartaLocal.wav"))
 const CartaJogada = new Audio(pathm.join(__dirname, "audios", "CartaJogada.wav"))
 let somAtual = CartaLocal
+let somMusic = CartaJogada
 
+// Utils
+function playSound(music){
+    if(somAtual != null) {
+        if(somAtual.currentTime != 0){
+            stopSound()
+        }
+    }
+    somAtual = music
+    somAtual.volume = volume
+    somAtual.play()
+}
 function stopSound() {
     if(somAtual != null) {
         somAtual.pause()
         somAtual.currentTime = 0
         somAtual = null
     }
+    
 }
-
 const porcentagem = Math.round(100 / (Dialogos.length - 1))
-
 function badge(item) { badges.push( item ) }
+
+
+
+
+
+
+
+
+
+
+
+
 
 function nextFase(i) {
     
@@ -83,19 +106,7 @@ function nextFase(i) {
 }
 
 function dragStart(e) {
-
-    if(somAtual != null && somAtual.currentTime == 0 || somAtual == null) {
-        somAtual = CartaLocal
-        somAtual.volume = volume
-        somAtual.play()
-    } else {
-        stopSound()
-        somAtual = CartaLocal
-        somAtual.volume = volume
-        somAtual.play()
-    }
-
-
+    playSound(CartaLocal)
 
 
 
@@ -153,14 +164,7 @@ function dragMove(e) {
 
 function dragEnd() {
     if (direction === "direita") {
-        if(somAtual != null) {
-            if(somAtual.currentTime != 0){
-                stopSound()
-            }
-        }
-        somAtual = CartaJogada
-        somAtual.volume = volume
-        somAtual.play()
+        playSound(CartaJogada)
 
         if(Dialogos[fase].direita.buscar != undefined || Dialogos[fase].direita.buscar != null) { 
             if(Dialogos[fase].direita.badge != undefined || Dialogos[fase].direita.badge != null) badge(Dialogos[fase].direita.badge)
@@ -192,15 +196,8 @@ function dragEnd() {
             s(".final").style.marginTop = '0px'
         }
     } else if (direction === "esquerda") {
-        if(somAtual != null) {
-            if(somAtual.currentTime != 0){
-                stopSound()
-            }
-        }
+        playSound(CartaJogada)
 
-        somAtual = CartaJogada
-        somAtual.volume = volume
-        somAtual.play()
 
 
 
@@ -232,15 +229,7 @@ function dragEnd() {
             s(".final").style.marginTop = '0px'
         }
     } else {
-        if(somAtual != null){
-            if(somAtual.currentTime != 0){
-                stopSound()
-            }
-        }
-
-        somAtual = CartaLocal
-        somAtual.volume = volume
-        somAtual.play()
+        playSound(CartaJogada)
 
 
         carta.style.transition = "all ease .2s"

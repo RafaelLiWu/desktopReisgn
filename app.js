@@ -1,3 +1,4 @@
+const electron = require("electron")
 const {
 	app,
 	BrowserWindow,
@@ -9,10 +10,30 @@ const path = require("path")
 const { title } = require("process")
 const publicPath = path.join(__dirname, "public")
 const fs = require("fs");
+const screen = electron.screen	
+let width
+let height
 function createWindow() {
+	const mainScreen = screen.getPrimaryDisplay()
+	const dimensionsMScreen = mainScreen.size
+	const MainWidth = dimensionsMScreen.width 
+	const MainHeight = dimensionsMScreen.height
+	
+	if(MainWidth <= 1280) {
+		width = 375
+		height = 660
+	} else if(MainWidth <= 1360 || MainWidth <= 1366) {
+		width = 414
+		height = 698
+	} else {
+		width = 414
+		height = 698
+	}
+
 	const win = new BrowserWindow({
-		width: 414,
-		height: 698,
+		width,
+		height,
+		backgroundColor: "#000000",
 		fullscreenable: false,
 		simpleFullscreen: false,
 		resizable: false,
@@ -56,8 +77,8 @@ function createWindow() {
 			.capturePage({
 				x: 0,
 				y: 0,
-				width: 414,
-				height: 698,
+				width,
+				height,
 			})
 			.then((img) => {
 				dialog
@@ -87,6 +108,18 @@ function createWindow() {
 			})
 			.catch((err) => {
 			});
+	})
+
+	ipcMain.on("resize", (event, args) => {
+		try{
+			width = parseInt(args[0].trim())
+			height = parseInt(args[1].trim())
+			win.setSize(width, height)
+			win.setMinimumSize(300, 300, true)
+			event.reply("resize-full", [width, height])
+		} catch (e) {
+			event.reply("resize-error", e)
+		}
 	})
 }
 
