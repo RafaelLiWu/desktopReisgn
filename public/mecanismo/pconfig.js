@@ -28,17 +28,17 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // Input Range, Feito(a) por Sasha, https://codepen.io/sashatran/pen/MQZYXB?editors=0110
 
-
   /* Dropdown Sizes
   ====================*/
   const sizes = ["375 x 660", "414 x 698", "450 x 750", "600 x 800"]
-  const subSizes = ["1280x720", "1366x768", "9999x9999", "9999x9999"]
+  const subSizes = ["1280x720", "1366x768", "< 1366x768", "Testing"]
   let alerta = []
   let sizesDropdown = false
 
+  s(".size-item-active").textContent = (innerWidth)+" x "+(innerHeight)
   SizesItem()
+  SizeModDom(innerWidth)
   s(".size-active").addEventListener("click", ActionClickSizes)
-
 
   function SizesItem() {
       let sizeAtivo = s(".size-item-active").innerHTML.toString().trim()
@@ -77,22 +77,23 @@ window.addEventListener('DOMContentLoaded', () => {
       s(".nonActive-size-item").style.display = "none"
     }
   }
-  
 
-  EPC.ipcRenderer.on("resize-full", (event, args) => {
-    setTimeout(()=>{
-      s(".size-active").addEventListener("click", ActionClickSizes)
-    }, 300)
-    if(args[0] == "450") {
+  function SizeModDom(width){
+    if(width == 375) {
+      document.documentElement.style.setProperty("--carta-width", "80%")
+      document.documentElement.style.setProperty("--carta-height", "80%")
+    } else if(width == "450") {
+      document.documentElement.style.setProperty("--carta-width", "80%");
+      document.documentElement.style.setProperty("--carta-height", "80%");
+    } else if(width == "414") {
       document.documentElement.style.setProperty("--carta-width", "80%");
       document.documentElement.style.setProperty("--carta-height", "80%");
     }
-  })
+  }
 
-  EPC.ipcRenderer.on("resize-error", (event, args) => {
-    s(".size-active").addEventListener("click", ActionClickSizes)
+  function ActiveAlert(mensagem){
     s(".alert").style.display = "flex"
-    s(".alert").innerHTML = "Ocorreu um erro, porfavor insira novamente a resolução."
+    s(".alert").innerHTML = mensagem
     if(alerta.length > 0) {
       for(let i = 0; i < alerta.length; i++){
         clearTimeout(alerta[i])
@@ -108,6 +109,23 @@ window.addEventListener('DOMContentLoaded', () => {
         s(".alert").style.marginTop = "10px"
       }, 300)
     },3000))
+  }
+  
+
+  EPC.ipcRenderer.on("resize-full", (event, args) => {
+    setTimeout(()=>{
+      s(".size-active").addEventListener("click", ActionClickSizes)
+    }, 300)
+    SizeModDom(args[0])
+  })
+
+  EPC.ipcRenderer.on("error", (event, args) => {
+    ActiveAlert(args[0])
+  })
+
+  EPC.ipcRenderer.on("resize-error", (event, args) => {
+    s(".size-active").addEventListener("click", ActionClickSizes)
+    ActiveAlert(args[0])
     sizesDropdown = true
     s(".nonActive-size-item").style.display = "flex"
   })

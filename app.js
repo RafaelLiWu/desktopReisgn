@@ -26,8 +26,8 @@ function createWindow() {
 		width = 414
 		height = 698
 	} else {
-		width = 414
-		height = 698
+		width = 450
+		height = 750
 	}
 
 	const win = new BrowserWindow({
@@ -49,8 +49,9 @@ function createWindow() {
 	})
 	win.loadFile(publicPath + "/index.html")
 	win.setIcon(publicPath + "/icon.png")
-	win.setTitle("A Libertação")
+	win.setTitle("AL")
 	win.once("ready-to-show", () => { win.show() })
+	win.removeMenu()
 
 	// IPC
 
@@ -104,9 +105,11 @@ function createWindow() {
 						}
 					})
 					.catch((err) => {
+						event.reply("error", ["Erro na hora de salvar, porfavor tente novamente ou nos avise via email <criff@gmail.com>"])
 					});
 			})
 			.catch((err) => {
+				event.reply("error", ["Erro no screenshot, porfavor tente novamente ou nos avise via email <criff@gmail.com>"])
 			});
 	})
 
@@ -118,7 +121,7 @@ function createWindow() {
 			win.setMinimumSize(300, 300, true)
 			event.reply("resize-full", [width, height])
 		} catch (e) {
-			event.reply("resize-error", e)
+			event.reply("resize-error", ["Ocorreu um erro, porfavor insira novamente a resolução."])
 		}
 	})
 }
@@ -158,4 +161,3 @@ app.on('window-all-closed', () => {
 		app.quit()
 	}
 })
-
