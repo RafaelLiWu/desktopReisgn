@@ -2,7 +2,7 @@ const Dialogos = [
     {
         id: 0,
         personagem: "Narrador",
-        personagemImagem: "p1.jpeg",
+        personagemImagem: "Narrador.png",
         texto: "Tancredo, cavalga sem rumo após ser traido pela sua amada. Após um tempo cavalgando, ele cai no chão prestes a morrer, quando Túlio um escravo leva para a casa de Luísa B.",
         direita:{
             dialogo: `...`,
@@ -16,7 +16,7 @@ const Dialogos = [
     {
         id: 1,
         personagem: "Narrador",
-        personagemImagem: "p1.jpeg",
+        personagemImagem: "Narrador.png",
         texto: "Tancredo se recupera a conciência e ao encontrar Úrsula ambos se apaixonam e prometem se casar, porém após ele se recuperar totalmente ele teria que sair, mas antes ele paga a alforria de Tulio, que decide segui-lo",
         direita: {
             dialogo: `...`,
@@ -30,7 +30,7 @@ const Dialogos = [
     {
         id:2,
         personagem: "Narrador",
-        personagemImagem: "p1.jpeg",
+        personagemImagem: "Narrador.png",
         texto: "Fernando, tio de Úrsula, um homem controlador que contém odio contra a familia de Luiza B, encontra Úrsula e decide que ela seria a sua esposa",
         direita: {
             dialogo: `...`,
@@ -44,7 +44,7 @@ const Dialogos = [
     {
         id: 3,
         personagem: "Narrador",
-        personagemImagem: "p1.jpeg",
+        personagemImagem: "Narrador.png",
         texto: "Luiza B depois de tempos enfermo morre, e quando Úrsula estava no cemiterio sozinha, Tancredo e Túlio a encontram no regresso de sua viagem. E após um tempo a promessa iria acontecer",
         direita: {
             dialogo: `...`,
@@ -58,7 +58,7 @@ const Dialogos = [
     {
         id: 4,
         personagem: "Narrador",
-        personagemImagem: "p1.jpeg",
+        personagemImagem: "Narrador.png",
         texto: "O Casamento, e na manhã seguinte...",
         direita: {
             dialogo: `...`,

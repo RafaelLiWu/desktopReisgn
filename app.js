@@ -7,27 +7,40 @@ const {
 	dialog
 } = require("electron")
 const path = require("path")
-const { title } = require("process")
+const { title, config } = require("process")
 const publicPath = path.join(__dirname, "public")
 const fs = require("fs");
-const screen = electron.screen	
-let width
-let height
+const screen = electron.screen
+let configPessoal = require(path.join(__dirname, "public", "mecanismo", 'configPessoal.json'))
+let { width, height } = configPessoal
+
 function createWindow() {
 	const mainScreen = screen.getPrimaryDisplay()
 	const dimensionsMScreen = mainScreen.size
-	const MainWidth = dimensionsMScreen.width 
+	const MainWidth = dimensionsMScreen.width
 	const MainHeight = dimensionsMScreen.height
-	
-	if(MainWidth <= 1280) {
-		width = 375
-		height = 660
-	} else if(MainWidth <= 1360 || MainWidth <= 1366) {
-		width = 414
-		height = 698
-	} else {
-		width = 450
-		height = 750
+
+	if (width == undefined && height == undefined) {
+		if (MainWidth <= 1280) {
+			width = 375
+			height = 660
+		} else if (MainWidth <= 1360 || MainWidth <= 1366) {
+			width = 600
+			height = 800
+		} else {
+			width = 450
+			height = 750
+		}
+		configPessoal.width = width
+		configPessoal.height = height
+		try{
+			fs.writeFile(
+				path.join(__dirname, "public", "mecanismo", "configPessoal.json"),
+				JSON.stringify(configPessoal, null, 2),
+				err => {
+					if (err) throw err
+		})} catch (err) {
+		}
 	}
 
 	const win = new BrowserWindow({
@@ -35,7 +48,9 @@ function createWindow() {
 		height,
 		backgroundColor: "#000000",
 		fullscreenable: false,
+		fullscreen: false,
 		simpleFullscreen: false,
+		maximizable: false,
 		resizable: false,
 		frame: false,
 		webPreferences: {
@@ -52,6 +67,10 @@ function createWindow() {
 	win.setTitle("AL")
 	win.once("ready-to-show", () => { win.show() })
 	win.removeMenu()
+	win.on('maximize', () => {
+		win.unmaximize()
+	});
+
 
 	// IPC
 
@@ -105,16 +124,16 @@ function createWindow() {
 						}
 					})
 					.catch((err) => {
-						event.reply("error", ["Erro na hora de salvar, porfavor tente novamente ou nos avise via email <criff@gmail.com>"])
+						if (err) event.reply("error", ["Erro na hora de salvar, porfavor tente novamente ou nos avise via email <criff@gmail.com>"])
 					});
 			})
 			.catch((err) => {
-				event.reply("error", ["Erro no screenshot, porfavor tente novamente ou nos avise via email <criff@gmail.com>"])
+				if (err) event.reply("error", ["Erro no screenshot, porfavor tente novamente ou nos avise via email <criff@gmail.com>"])
 			});
 	})
 
 	ipcMain.on("resize", (event, args) => {
-		try{
+		try {
 			width = parseInt(args[0].trim())
 			height = parseInt(args[1].trim())
 			win.setSize(width, height)
@@ -136,8 +155,17 @@ ipcMain.on("openPlat", (event, args) => {
 })
 
 ipcMain.on("openSocial", (event, args) => {
-	if(args) require("electron").shell.openExternal(args)
+	if (args) require("electron").shell.openExternal(args)
 })
+
+
+
+
+// Menu // Final
+// ===========================================================================================
+const templateMenu = []
+const menu = Menu.buildFromTemplate(templateMenu)
+Menu.setApplicationMenu(menu)
 
 app.whenReady().then(() => {
 	createWindow()
@@ -148,16 +176,9 @@ app.whenReady().then(() => {
 	})
 })
 
-
-// Menu
-// ===========================================================================================
-const templateMenu = []
-const menu = Menu.buildFromTemplate(templateMenu)
-Menu.setApplicationMenu(menu)
-
-
 app.on('window-all-closed', () => {
 	if (process.platform !== 'darwin') {
 		app.quit()
 	}
 })
+

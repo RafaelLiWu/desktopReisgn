@@ -941,7 +941,7 @@ nav{
 	border-radius: 3px;
 	position: absolute;
 	top: 35px;
-	z-index: 9;
+	z-index: 9999;
 	overflow: hidden;
 	display: none;
 }

@@ -1,5 +1,12 @@
 window.addEventListener('DOMContentLoaded', () => {
   const EPC = require("electron")
+  const pathPC = require("path")
+  let configPessoal = require(pathm.join(__dirname, "mecanismo", 'configPessoal.json'))
+  let { audioValue } = configPessoal 
+  if(audioValue) {
+      s('#item-audio-subaudio').textContent = String(audioValue.toString())+"%"
+      s('#range').value = parseInt(audioValue)
+  }
 
   let range = document.getElementById("range");
   let base = window.getComputedStyle(document.body).getPropertyValue("--base");
@@ -21,7 +28,7 @@ window.addEventListener('DOMContentLoaded', () => {
   init(range.value);
   range.addEventListener("input", () => {
     updateVar(range.value);
-    rangeValue.innerHTML = Math.floor(range.value) + "%"
+    rangeValue.textContent = Math.floor(range.value) + "%"
     volumeRange = (range.value / 100).toFixed(2)
     volume = volumeRange
   });
@@ -31,13 +38,14 @@ window.addEventListener('DOMContentLoaded', () => {
   /* Dropdown Sizes
   ====================*/
   const sizes = ["375 x 660", "414 x 698", "450 x 750", "600 x 800"]
-  const subSizes = ["1280x720", "1366x768", "< 1366x768", "Testing"]
+  const subSizes = ["1280x720", "1366x768", "> 1366x768", "Testing"]
   let alerta = []
   let sizesDropdown = false
 
-  s(".size-item-active").textContent = (innerWidth)+" x "+(innerHeight)
+  let {width, height} = require(pathPC.join(__dirname, "mecanismo", "configPessoal.json"))
+  s(".size-item-active").textContent = width+" x "+height
   SizesItem()
-  SizeModDom(innerWidth)
+  SizeModDom(width)
   s(".size-active").addEventListener("click", ActionClickSizes)
 
   function SizesItem() {
@@ -78,16 +86,16 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function SizeModDom(width){
-    if(width == 375) {
-      document.documentElement.style.setProperty("--carta-width", "80%")
-      document.documentElement.style.setProperty("--carta-height", "80%")
-    } else if(width == "450") {
-      document.documentElement.style.setProperty("--carta-width", "80%");
-      document.documentElement.style.setProperty("--carta-height", "80%");
-    } else if(width == "414") {
-      document.documentElement.style.setProperty("--carta-width", "80%");
-      document.documentElement.style.setProperty("--carta-height", "80%");
+  function SizeModDom(w){
+    if(w == "375") {
+      document.documentElement.style.setProperty("--carta-width", "90%")
+      document.documentElement.style.setProperty("--carta-height", "90%")
+    } else if(w == "414") {
+      document.documentElement.style.setProperty("--carta-width", "90%");
+      document.documentElement.style.setProperty("--carta-height", "90%");
+    } else if(w == "450") {
+      document.documentElement.style.setProperty("--carta-width", "90%");
+      document.documentElement.style.setProperty("--carta-height", "90%");
     }
   }
 

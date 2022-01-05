@@ -1,3 +1,6 @@
+const fsInicio = require("fs")
+const pathInicio = require("path");
+
 const s = e => document.querySelector(e)
 let pagesMarginTop = window.getComputedStyle(document.body).getPropertyValue("--pages-margin-top");
 
@@ -7,7 +10,7 @@ function startGame() {
 }
 
 function recomecar() {
-    fase = 0 
+    fase = 0
     badges = []
     s(".guia").style.opacity = "100%"
     s(".progress-bar").style.width = "0%"
@@ -25,6 +28,19 @@ function openSaiba() {
 
 function closeConfig() {
     s(".pconfig").style.marginTop = pagesMarginTop
+
+    let dimensions = s(".size-item-active").textContent.split("x")
+
+    let audioValue = s("#range").value
+    let configPessoal = require(pathm.join(__dirname, "mecanismo", 'configPessoal.json'))
+    configPessoal.audioValue = audioValue
+    configPessoal.width = parseInt(dimensions[0].toString().trim())
+    configPessoal.height = parseInt(dimensions[1].toString().trim())
+
+    fsInicio.writeFile(pathInicio.join(__dirname, "mecanismo", "configPessoal.json"),
+        JSON.stringify(configPessoal, null, 2), (err) => {
+            if (err) throw err;
+        });
 }
 
 function closeSaiba() {
