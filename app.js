@@ -25,8 +25,8 @@ function createWindow() {
 			width = 375
 			height = 660
 		} else if (MainWidth <= 1360 || MainWidth <= 1366) {
-			width = 600
-			height = 800
+			width = 414
+			height = 698
 		} else {
 			width = 450
 			height = 750
@@ -40,6 +40,7 @@ function createWindow() {
 				err => {
 					if (err) throw err
 		})} catch (err) {
+			console.log("Ocorreu um erro na resolução!")
 		}
 	}
 
@@ -70,7 +71,6 @@ function createWindow() {
 	win.on('maximize', () => {
 		win.unmaximize()
 	});
-
 
 	// IPC
 
@@ -158,7 +158,9 @@ ipcMain.on("openSocial", (event, args) => {
 	if (args) require("electron").shell.openExternal(args)
 })
 
-
+ipcMain.on("error", (event, args) => {
+	ipcMain.reply("error", args[0])
+})
 
 
 // Menu // Final
@@ -170,15 +172,11 @@ Menu.setApplicationMenu(menu)
 app.whenReady().then(() => {
 	createWindow()
 	app.on('activate', () => {
-		if (BrowserWindow.getAllWindows().length === 0) {
-			createWindow()
-		}
+		if (BrowserWindow.getAllWindows().length === 0) createWindow()
 	})
 })
 
 app.on('window-all-closed', () => {
-	if (process.platform !== 'darwin') {
-		app.quit()
-	}
+	if (process.platform !== 'darwin') app.quit()
 })
 

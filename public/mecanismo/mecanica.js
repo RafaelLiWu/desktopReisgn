@@ -1,5 +1,3 @@
-const pathm = require("path")
-
 // Jogo
 // ==============================================================================================
 
@@ -16,12 +14,10 @@ var carta,
     badges = [],
     volume = 1
 
-const CartaLocal = new Audio(pathm.join(__dirname, "audios", "CartaLocal.wav"))
-const CartaJogada = new Audio(pathm.join(__dirname, "audios", "CartaJogada.wav"))
+const CartaLocal = new Audio(path.join(__dirname, "audios", "CartaLocal.wav"))
+const CartaJogada = new Audio(path.join(__dirname, "audios", "CartaJogada.wav"))
 let somAtual = CartaLocal
 let somMusic = CartaJogada
-
-
 
 // Utils
 function playSound(music){

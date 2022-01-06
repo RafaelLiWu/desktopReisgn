@@ -1,6 +1,3 @@
-const fsInicio = require("fs")
-const pathInicio = require("path");
-
 const s = e => document.querySelector(e)
 let pagesMarginTop = window.getComputedStyle(document.body).getPropertyValue("--pages-margin-top");
 
@@ -32,15 +29,17 @@ function closeConfig() {
     let dimensions = s(".size-item-active").textContent.split("x")
 
     let audioValue = s("#range").value
-    let configPessoal = require(pathm.join(__dirname, "mecanismo", 'configPessoal.json'))
+    let configPessoal = require(path.join(__dirname, "mecanismo", 'configPessoal.json'))
     configPessoal.audioValue = audioValue
     configPessoal.width = parseInt(dimensions[0].toString().trim())
     configPessoal.height = parseInt(dimensions[1].toString().trim())
-
-    fsInicio.writeFile(pathInicio.join(__dirname, "mecanismo", "configPessoal.json"),
-        JSON.stringify(configPessoal, null, 2), (err) => {
-            if (err) throw err;
-        });
+    try{
+        fs.writeFile(path.join(__dirname, "mecanismo", "configPessoal.json"),
+            JSON.stringify(configPessoal, null, 2), (err) => {
+                if (err) throw err;
+            })} catch(err){
+                ipcRenderer.send("error", ["Error, não foi possivel salvar as configurações no computador"])
+    }
 }
 
 function closeSaiba() {

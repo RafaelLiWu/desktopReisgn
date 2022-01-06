@@ -1,7 +1,5 @@
 window.addEventListener('DOMContentLoaded', () => {
-  const EPC = require("electron")
-  const pathPC = require("path")
-  let configPessoal = require(pathm.join(__dirname, "mecanismo", 'configPessoal.json'))
+  let configPessoal = require(path.join(__dirname, "mecanismo", 'configPessoal.json'))
   let { audioValue } = configPessoal 
   if(audioValue) {
       s('#item-audio-subaudio').textContent = String(audioValue.toString())+"%"
@@ -41,8 +39,8 @@ window.addEventListener('DOMContentLoaded', () => {
   const subSizes = ["1280x720", "1366x768", "> 1366x768", "Testing"]
   let alerta = []
   let sizesDropdown = false
-
-  let {width, height} = require(pathPC.join(__dirname, "mecanismo", "configPessoal.json"))
+  let {width, height} = configPessoal
+  
   s(".size-item-active").textContent = width+" x "+height
   SizesItem()
   SizeModDom(width)
@@ -69,7 +67,7 @@ window.addEventListener('DOMContentLoaded', () => {
           s(".size-item-active").innerHTML = element.children[0].innerHTML
 
           let dimensions = element.children[0].innerHTML.split("x")
-          EPC.ipcRenderer.send("resize", [dimensions[0], dimensions[1]])
+          ipcRenderer.send("resize", [dimensions[0], dimensions[1]])
           s(".size-active").removeEventListener("click", ActionClickSizes)
           SizesItem()
         })
@@ -118,23 +116,4 @@ window.addEventListener('DOMContentLoaded', () => {
       }, 300)
     },3000))
   }
-  
-
-  EPC.ipcRenderer.on("resize-full", (event, args) => {
-    setTimeout(()=>{
-      s(".size-active").addEventListener("click", ActionClickSizes)
-    }, 300)
-    SizeModDom(args[0])
-  })
-
-  EPC.ipcRenderer.on("error", (event, args) => {
-    ActiveAlert(args[0])
-  })
-
-  EPC.ipcRenderer.on("resize-error", (event, args) => {
-    s(".size-active").addEventListener("click", ActionClickSizes)
-    ActiveAlert(args[0])
-    sizesDropdown = true
-    s(".nonActive-size-item").style.display = "flex"
-  })
 })

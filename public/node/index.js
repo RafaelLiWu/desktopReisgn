@@ -4,7 +4,10 @@ const {
 	dialog
 } = require("electron")
 const $ = require("jquery")
-const { path } = require("path")
+const path = require("path")
+const fs = require("fs")
+
+
 let navOpcoes = false;
 
 // IPC
@@ -16,6 +19,10 @@ $(".nav-close").on("click", () => {
 
 $(".nav-minimize").on("click", () => {
 	ipcRenderer.send("windowMinimize")
+})
+
+$(".screenshot").on("click", () => {
+	ipcRenderer.send("screenshot")
 })
 
 $(".nav-item").each( (index, item) => {
@@ -45,9 +52,26 @@ $(".psaiba-pessoa-sociais-openPlat").each( (index, item) => {
 		navOpcoes = false
 	})
 })
-document.querySelector(".screenshot").addEventListener("click", () => {
-	ipcRenderer.send("screenshot")
-});
+
+ipcRenderer.on("resize-full", (event, args) => {
+    setTimeout(()=>{
+      s(".size-active").addEventListener("click", ActionClickSizes)
+    }, 300)
+    SizeModDom(args[0])
+  })
+
+ipcRenderer.on("error", (event, args) => {
+	ActiveAlert(args[0])
+})
+
+ipcRenderer.on("resize-error", (event, args) => {
+	s(".size-active").addEventListener("click", ActionClickSizes)
+	ActiveAlert(args[0])
+	sizesDropdown = true
+	s(".nonActive-size-item").style.display = "flex"
+})
+
+
 
 
 
